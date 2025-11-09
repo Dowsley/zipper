@@ -134,14 +134,13 @@ def _render_cell_row(grid: Grid, row_idx: int, path_set: set) -> str:
 
         # Cell content
         if cell:
+            in_path = (row_idx, col_idx) in path_set
             if cell.number is not None:
-                # Numbered checkpoint
-                parts.append(f" {BLUE}{cell.number}{RESET} ")
-            elif (row_idx, col_idx) in path_set:
-                # Part of the path
+                color = GREEN if in_path else BLUE
+                parts.append(f" {color}{cell.number}{RESET} ")
+            elif in_path:
                 parts.append(f" {GREEN}*{RESET} ")
             else:
-                # Empty cell
                 parts.append("   ")
 
     # Right border
