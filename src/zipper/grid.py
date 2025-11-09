@@ -16,7 +16,7 @@ class Cell:
             'E': False,  # Wall to right (blocks movement right)
             'W': False,  # Wall to left (blocks movement left)
         }
-        self.visited = False  # For pathfinding
+        self.visited = False
 
     def __repr__(self):
         return f"Cell({self.row},{self.col},num={self.number})"
@@ -28,9 +28,7 @@ class Grid:
     def __init__(self, rows: int, cols: int):
         self.rows = rows
         self.cols = cols
-        # Create 2D array of cells
         self.cells = [[Cell(r, c) for c in range(cols)] for r in range(rows)]
-        # Map of checkpoint numbers to cells
         self.numbered_cells: dict[int, Cell] = {}
 
     def get_cell(self, row: int, col: int) -> Optional[Cell]:

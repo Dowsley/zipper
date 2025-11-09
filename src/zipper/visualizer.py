@@ -46,18 +46,14 @@ def render_grid(grid: Grid, path: list[Cell] = None) -> str:
     path_set = set((cell.row, cell.col) for cell in path)
     lines = []
 
-    # Render each row
     for row_idx in range(grid.rows):
-        # Render top border or separator
         if row_idx == 0:
             lines.append(_render_top_border(grid, row_idx))
         else:
             lines.append(_render_middle_border(grid, row_idx))
 
-        # Render cell content row
         lines.append(_render_cell_row(grid, row_idx, path_set))
 
-    # Render bottom border
     lines.append(_render_bottom_border(grid))
 
     return "\n".join(lines)
@@ -89,8 +85,7 @@ def _render_middle_border(grid: Grid, row_idx: int) -> str:
 
         # Check if there's a wall below the cell above
         if cell and cell.walls['S']:
-            # Thick wall line
-            parts.append(f"{RED}{H_WALL * 3}{RESET}")
+            parts.append(f"{RED}{H_WALL * 3}{RESET}") # Thick wall line
         else:
             # Normal line
             parts.append(H_LINE * 3)
